@@ -12,5 +12,9 @@ app.get('/', function(req, res){
     res.status(200).sendFile(__dirname + '/views/lobby.html');
 });
 
+app.get('/game', function(req, res){
+    res.status(200).sendFile(__dirname + "/views/game.html");
+});
+
 GMC(app, server);
 lobbyController(app, server);

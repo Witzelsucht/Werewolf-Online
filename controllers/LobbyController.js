@@ -12,6 +12,7 @@ function randomNick(){
 module.exports = function(app, server){
     io = socket(server);
     io.on('connection', function(socket){
+        socket.emit('entry', allClients, host);
         socket.emit('getNickname', "Podaj nick" ,randomNick());
         socket.on('resNickname', function(data){
             var nickTaken = false;
@@ -30,7 +31,6 @@ module.exports = function(app, server){
             {
                 allClients.push(data);
                 host = allClients[0];
-                io.sockets.emit('host', host)
                 io.sockets.emit('entry', allClients, host);
             }
         });
