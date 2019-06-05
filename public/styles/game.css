@@ -1,0 +1,30 @@
+body{
+    margin: 0;
+}
+
+#container{
+    width: 100%;
+    height: 100%;
+}
+
+#sidepanel{
+    width: 25%;
+    height: 100%;
+    float: left;
+}
+
+#gamepanel{
+    width: 75%;
+    height: 100%;
+    float: left;
+}
+
+#roles{
+    width: 100%;
+    height: 50%;
+}
+
+#chat{
+    width: 100%;
+    height: 50%;
+}

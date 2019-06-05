@@ -1,0 +1,16 @@
+{
+  "name": "wwo",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Witzelsucht",
+  "license": "ISC",
+  "description": "Werewolf Online",
+  "dependencies": {
+    "ejs": "^2.6.1",
+    "express": "^4.17.0",
+    "socket.io": "^2.2.0"
+  }
+}
