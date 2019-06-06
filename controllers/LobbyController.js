@@ -39,6 +39,9 @@ module.exports = function(app, server){
             allClients.splice(i, 1);
             host = allClients[0];
             io.sockets.emit('entry', allClients, host);
-        });
+        });   
+        socket.on('start', function(){
+            io.sockets.emit('redirect');
+        })  
     });
 }

@@ -18,3 +18,4 @@ app.get('/game', function(req, res){
 
 GMC(app, server);
 lobbyController(app, server);
+

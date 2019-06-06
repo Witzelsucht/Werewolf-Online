@@ -1,7 +1,6 @@
 var socket = io.connect('http://localhost:2137');
 var nick;
 var clientHost;
-var btn = document.getElementById('start');
 
 socket.on('getNickname', function(message, randomnick){
     nick = prompt(message, randomnick);
@@ -16,4 +15,20 @@ socket.on('entry', function(data, host){
     }
     document.getElementById('header').innerHTML = '<h2>Lobby host: ' + host + '</h2>';;
     clientHost = host;
+    if(clientHost == nick)
+    {
+        document.getElementById('start').disabled = false;
+    }
+    else
+    {
+        document.getElementById('start').disabled = true;
+    }
 });
+
+socket.on('redirect', function(){
+    window.location.href = '/game';
+});
+
+function buttonClicked(){
+    socket.emit('start');
+}
