@@ -3,7 +3,10 @@ var nick;
 var clientHost;
 
 socket.on('getNickname', function(message, randomnick){
-    nick = prompt(message, randomnick);
+    do
+    {
+        nick = prompt(message, randomnick);
+    }while(nick == null);
     socket.emit('resNickname', nick);
 });
 
@@ -36,12 +39,21 @@ socket.on('start', function(){
     window.location.href = '/game';
 });
 
-function buttonClicked(){
+function start(){
     socket.emit('start');
 }
 
-function chatsend(){
-    if(document.getElementById('message').value != "")
+function  enterChatSend(e)
+{
+    if(e.keyCode == 13)
+    {
+        chatSend();
+    }
+}
+
+function chatSend(){
+    var wschk = (document.getElementById('message').value).trim();
+    if(wschk != "")
     {
         socket.emit('chat', {
             sender: nick,
@@ -54,10 +66,10 @@ function chatsend(){
 socket.on('chat', function(data){
     if(data.sender == nick)
     {
-        document.getElementById('output').innerHTML += '<p><strong class="localclient">' + data.sender + ': </strong>' + data.message + '</p>';
+        document.getElementById('output').innerHTML += '<p style="margin-left: 10px;"><strong class="localclient">' + data.sender + ': </strong>' + data.message + '</p>';
     }
     else
     {
-        document.getElementById('output').innerHTML += '<p><strong class="client">' + data.sender + ': </strong>' + data.message + '</p>';
+        document.getElementById('output').innerHTML += '<p style="margin-left: 10px;"><strong class="client">' + data.sender + ': </strong>' + data.message + '</p>';
     }
 });

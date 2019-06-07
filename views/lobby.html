@@ -7,22 +7,25 @@
     <body>
         <script src="/scripts/lobby.js"></script>
         <div id="container">
+            <div id="chat">
+                    <h2>Chat</h2>
+                    <div id="chat-window">
+                        <div id="output"></div>
+                    </div>
+                <input id="message" onkeypress="enterChatSend(event)" type="text" placeholder="Wiadomość"/>
+                <button onclick="chatSend()" id="send">Wyślij</button>
+             </div>
             <div id="lobby">
                 <div id="header">
                 </div>
                 <div id="connected"></div>
                 <div id="config">
-                    <button id="start" onclick="buttonClicked()">Start</button>
+                    <button id="start" onclick="start()">Start</button>
                 </div>
             </div>
-            <div id="chat">
-                <h2>Chat</h2>
-                <div id="chat-window">
-                    <div id="output"></div>
-                </div>
-                <input id="message" type="text" placeholder="wiadomość"/>
-                <button onclick="chatsend()" id="send">Send</button>
-            </div>
+            <div id="options">
+
+            </div>        
         </div>
     </body>
 </html>
