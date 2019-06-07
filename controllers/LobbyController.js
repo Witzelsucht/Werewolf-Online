@@ -1,6 +1,5 @@
 var socket = require('socket.io');
 var allClients = [];
-var isHost = false;
 var host;
 
 function randomNick(){
@@ -41,7 +40,10 @@ module.exports = function(app, server){
             io.sockets.emit('entry', allClients, host);
         });   
         socket.on('start', function(){
-            io.sockets.emit('redirect');
+            io.sockets.emit('start');
         })  
+        socket.on('chat', function(data){
+            io.sockets.emit('chat', data);
+        });
     });
 }
