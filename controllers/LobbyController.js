@@ -52,7 +52,9 @@ module.exports = function(app, server){
         });
         socket.on('Options', function(data){
             gameRules = data;
-            io.socket.emit('Options', data);
         });
+        socket.on('Promote', function(data){
+            io.sockets.emit('entry', allClients, allClients[data])
+        })
     });
 }

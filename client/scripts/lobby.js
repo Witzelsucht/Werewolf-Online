@@ -12,20 +12,34 @@ socket.on('getNickname', function(message, randomnick){
 
 socket.on('entry', function(data, host){
     var connected = document.getElementById('connected');
+    clientHost = host;
     connected.innerHTML = "";
     for(var i = 0; i<data.length; i++)
     {
-        if(nick == data[i])
+        if(clientHost == nick)
         {
-            connected.innerHTML += '<p class="localclient"><strong>' + data[i] + '</strong></p>';
+            if(nick == data[i])
+            {
+                connected.innerHTML += '<p class="localclient"><strong>' + data[i] + '</strong></p>';
+            }
+            else
+            {
+                connected.innerHTML += '<p class="client"><strong>' + data[i] + '</strong><button onclick="kick(' + i +')">Kick</button><button onclick="promote(' + i + ')">Promote</button></p>';
+            }
         }
         else
         {
-            connected.innerHTML += '<p class="client"><strong>' + data[i] + '</strong></p>';
+            if(nick == data[i])
+            {
+                connected.innerHTML += '<p class="localclient"><strong>' + data[i] + '</strong></p>';
+            }
+            else
+            {
+                connected.innerHTML += '<p class="client"><strong>' + data[i] + '</strong>';
+            }
         }
     }
     document.getElementById('header').innerHTML = '<h2>Lobby host: ' + host + '</h2>';
-    clientHost = host;
     var nodes = document.getElementById("options").getElementsByTagName('*');
     if(clientHost == nick)
     {
@@ -54,7 +68,7 @@ function start(){
     socket.emit('start');
 }
 
-function  enterChatSend(e)
+function enterChatSend(e)
 {
     if(e.keyCode == 13)
     {
@@ -62,9 +76,21 @@ function  enterChatSend(e)
     }
 }
 
+function kick(i)
+{
+    //TODO
+}
+
+function promote(i)
+{
+    socket.emit('Promote', i)
+}
+
 function sendOptions()
 {
     var maxPlayers = document.getElementById("maxPlayers").value;
+    var monstersCheck = [];
+    var monsters = document.getElementsByClassName("monster");
     var playedCards = [];
     var cards = document.getElementsByClassName("card");
     for(var i = 0; i<cards.length; i++){
@@ -73,8 +99,29 @@ function sendOptions()
             playedCards.push(cards[i].value);
         }
     };
+    for(var i = 0; i<monsters.length; i++){
+        if(monsters[i].checked == true)
+        {
+            monstersCheck.push(monsters[i].value);
+        }
+    };
     var data = {lobbyLimit: maxPlayers, cards: playedCards};
-    socket.emit('Options', data);
+    if(monstersCheck.length > 0)
+    {
+        var cardNumber = parseInt(maxPlayers) + 3;
+        if(playedCards.length == cardNumber)
+        {
+            socket.broadcast.emit('Options', data);
+        }
+        else
+        {
+            alert("Zaznaczyłeś nieprawidłową ilość kart");
+        }
+    }
+    else
+    {
+        alert("Nie zaznaczyłeś karty potwora");
+    }
 }
 
 function chatSend(){
