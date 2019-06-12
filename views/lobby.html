@@ -26,7 +26,7 @@
             <div id="options">
                     <h2>Opcje</h2>
                     <label>Liczba graczy</label>
-                    <select name="players">
+                    <select id="maxPlayers">
                         <option value="3">3</option>
                         <option value="4">4</option>
                         <option value="5">5</option>
@@ -38,14 +38,47 @@
                     </select>
                     <br>
                     <label>Karty w grze: </label>
-                    <p>Doppler<input type="checkbox" name="doppler" class="card"/> Golem<input type="checkbox" name="golem" class="card"/> Grabarz<input type="checkbox" name="undertaker" class="card"/></p>
-                    <p>Klaun<input type="checkbox" name="clown" class="card"/> Koszmar<input type="checkbox" name="nightmare" class="card"/> Lewiatan<input type="checkbox" name="leviathan" class="card"/> </p>
-                    <p>Lunatyk<input type="checkbox" name="lunatic" class="card"/> Łowca<input type="checkbox" name="hunter" class="card"/> Mistyk<input type="checkbox" name="mistic" class="card"/></p>
-                    <p>Okultysta<input type="checkbox" name="ocultist" class="card"/> Pijak<input type="checkbox" name="drunk" class="card"/> Przeklęty<input type="checkbox" name="cursed" class="card"/></p>
-                    <p>Sędzia<input type="checkbox" name="judge" class="card"/> Sługus<input type="checkbox" name="minion" class="card"/> Staruch<input type="checkbox" name="oldman" class="card"/></p>
-                    <p>Strażnik<input type="checkbox" name="sentinel" class="card"/> Wampir<input type="checkbox" name="vampire" class="card"/> Wiedźma<input type="checkbox" name="witch" class="card"/></p>
-                    <p>Wilkołak<input type="checkbox" name="werewolf"/> Wyrocznia<input type="checkbox" name="oracle"/> Złodziej<input type="checkbox" name="thief"/></p>
-                    <button onclick="sendData()">Zapisz</button>
+
+                    <p>
+                        Mimik<input type="checkbox" value="mimic" class="card"/> 
+                        Doppler<input type="checkbox" value="doppler" class="card"/> 
+                        Strażnik<input type="checkbox" value="sentinel" class="card"/>
+                    </p>
+                    <p>
+                        Wilkołak<input type="checkbox" value="werewolf" class="card monster"/> 
+                        Golem<input type="checkbox" value="golem" class="card monster"/> 
+                        Lewiatan<input type="checkbox" value="leviathan" class="card monster"/>
+                    </p>
+                    <p>
+                        Wampir<input type="checkbox" value="vampire" class="card monster"/> 
+                        Koszmar<input type="checkbox" value="nightmare" class="card monster"/> 
+                        Sługus<input type="checkbox" value="minion" class="card"/>
+                    </p>
+                    <p>
+                        Wyrocznia<input type="checkbox" value="oracle" class="card"/> 
+                        Okultysta<input type="checkbox" value="ocultist" class="card"/> 
+                        Złodziej<input type="checkbox" value="thief" class="card"/>
+                    </p>
+                    <p>
+                        Wiedźma<input type="checkbox" value="witch" class="card"/> 
+                        Łobuz<input type="checkbox" value="troublemaker" class="card"/> 
+                        Klaun<input type="checkbox" value="clown" class="card"/> 
+                    </p>
+                    <p>
+                        Mistyk<input type="checkbox" value="mistic" class="card"/> 
+                        Pijak<input type="checkbox" value="drunk" class="card"/> 
+                        Lunatyk<input type="checkbox" value="lunatic" class="card"/>
+                    </p>
+                    <p>
+                        Sędzia<input type="checkbox" value="judge" class="card"/>
+                        Grabarz<input type="checkbox" value="undertaker" class="card"/> 
+                        Łowca<input type="checkbox" value="hunter" class="card"/>
+                    </p>
+                    <p>
+                        Przeklęty<input type="checkbox" value="cursed" class="card"/>
+                        Staruch<input type="checkbox" value="oldman" class="card"/>
+                    </p>
+                    <button onclick="sendOptions()">Zapisz</button>
             </div>        
         </div>
     </body>

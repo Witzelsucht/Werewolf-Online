@@ -1,5 +1,6 @@
 var socket = require('socket.io');
 var allClients = [];
+var gameRules;
 var host;
 
 function randomNick(){
@@ -49,8 +50,9 @@ module.exports = function(app, server){
         socket.on('chat', function(data){
             io.sockets.emit('chat', data);
         });
-        socket.on('Form', function(){
-            console.log('test kurwa');
+        socket.on('Options', function(data){
+            gameRules = data;
+            io.socket.emit('Options', data);
         });
     });
 }

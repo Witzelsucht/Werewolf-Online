@@ -11,23 +11,24 @@ socket.on('getNickname', function(message, randomnick){
 });
 
 socket.on('entry', function(data, host){
-    document.getElementById('connected').innerHTML = "";
+    var connected = document.getElementById('connected');
+    connected.innerHTML = "";
     for(var i = 0; i<data.length; i++)
     {
         if(nick == data[i])
         {
-            document.getElementById('connected').innerHTML += '<p class="localclient"><strong>' + data[i] + '</strong></p>';
+            connected.innerHTML += '<p class="localclient"><strong>' + data[i] + '</strong></p>';
         }
         else
         {
-            document.getElementById('connected').innerHTML += '<p class="client"><strong>' + data[i] + '</strong></p>';
+            connected.innerHTML += '<p class="client"><strong>' + data[i] + '</strong></p>';
         }
     }
     document.getElementById('header').innerHTML = '<h2>Lobby host: ' + host + '</h2>';
     clientHost = host;
+    var nodes = document.getElementById("options").getElementsByTagName('*');
     if(clientHost == nick)
     {
-        var nodes = document.getElementById("options").getElementsByTagName('*');
         for(var i = 0; i < nodes.length; i++)
         {
             nodes[i].disabled = false;
@@ -36,7 +37,6 @@ socket.on('entry', function(data, host){
     }
     else
     {
-        var nodes = document.getElementById("options").getElementsByTagName('*');
         for(var i = 0; i < nodes.length; i++)
         {
             nodes[i].disabled = true;
@@ -50,6 +50,7 @@ socket.on('start', function(){
 });
 
 function start(){
+
     socket.emit('start');
 }
 
@@ -61,9 +62,19 @@ function  enterChatSend(e)
     }
 }
 
-function sendData()
+function sendOptions()
 {
-    socket.emit('Form');
+    var maxPlayers = document.getElementById("maxPlayers").value;
+    var playedCards = [];
+    var cards = document.getElementsByClassName("card");
+    for(var i = 0; i<cards.length; i++){
+        if(cards[i].checked==true)
+        {
+            playedCards.push(cards[i].value);
+        }
+    };
+    var data = {lobbyLimit: maxPlayers, cards: playedCards};
+    socket.emit('Options', data);
 }
 
 function chatSend(){
