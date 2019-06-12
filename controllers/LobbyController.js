@@ -49,5 +49,8 @@ module.exports = function(app, server){
         socket.on('chat', function(data){
             io.sockets.emit('chat', data);
         });
+        socket.on('Form', function(){
+            console.log('test kurwa');
+        });
     });
 }
