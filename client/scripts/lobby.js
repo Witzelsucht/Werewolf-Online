@@ -27,10 +27,20 @@ socket.on('entry', function(data, host){
     clientHost = host;
     if(clientHost == nick)
     {
+        var nodes = document.getElementById("options").getElementsByTagName('*');
+        for(var i = 0; i < nodes.length; i++)
+        {
+            nodes[i].disabled = false;
+        }
         document.getElementById('start').disabled = false;
     }
     else
     {
+        var nodes = document.getElementById("options").getElementsByTagName('*');
+        for(var i = 0; i < nodes.length; i++)
+        {
+            nodes[i].disabled = true;
+        }
         document.getElementById('start').disabled = true;
     }
 });
@@ -49,6 +59,11 @@ function  enterChatSend(e)
     {
         chatSend();
     }
+}
+
+function sendData()
+{
+    socket.emit('Form');
 }
 
 function chatSend(){
