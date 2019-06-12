@@ -24,8 +24,8 @@
                 </div>
             </div>
             <div id="options">
-                <form name="optionsForm" action="POST">
-                    <legend>Opcje</legend>
+                    <h2>Opcje</h2>
+                    <label>Liczba graczy</label>
                     <select name="players">
                         <option value="3">3</option>
                         <option value="4">4</option>
@@ -35,9 +35,17 @@
                         <option value="8">8</option>
                         <option value="9">9</option>
                         <option value="10">10</option>
-                        GÓWNO TEST
                     </select>
-                </form>
+                    <br>
+                    <label>Karty w grze: </label>
+                    <p>Doppler<input type="checkbox" name="doppler" class="card"/> Golem<input type="checkbox" name="golem" class="card"/> Grabarz<input type="checkbox" name="undertaker" class="card"/></p>
+                    <p>Klaun<input type="checkbox" name="clown" class="card"/> Koszmar<input type="checkbox" name="nightmare" class="card"/> Lewiatan<input type="checkbox" name="leviathan" class="card"/> </p>
+                    <p>Lunatyk<input type="checkbox" name="lunatic" class="card"/> Łowca<input type="checkbox" name="hunter" class="card"/> Mistyk<input type="checkbox" name="mistic" class="card"/></p>
+                    <p>Okultysta<input type="checkbox" name="ocultist" class="card"/> Pijak<input type="checkbox" name="drunk" class="card"/> Przeklęty<input type="checkbox" name="cursed" class="card"/></p>
+                    <p>Sędzia<input type="checkbox" name="judge" class="card"/> Sługus<input type="checkbox" name="minion" class="card"/> Staruch<input type="checkbox" name="oldman" class="card"/></p>
+                    <p>Strażnik<input type="checkbox" name="sentinel" class="card"/> Wampir<input type="checkbox" name="vampire" class="card"/> Wiedźma<input type="checkbox" name="witch" class="card"/></p>
+                    <p>Wilkołak<input type="checkbox" name="werewolf"/> Wyrocznia<input type="checkbox" name="oracle"/> Złodziej<input type="checkbox" name="thief"/></p>
+                    <button onclick="sendData()">Zapisz</button>
             </div>        
         </div>
     </body>
