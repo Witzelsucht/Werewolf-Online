@@ -5,7 +5,7 @@ var host;
 
 function randomNick(){
     var nickBase = ["Nowakus", "Duża Roxi", "Huberinio", "Wrotka Wywrotka", "Twój Stary", "Twoja Stara", "Dzban"];
-    var nick = nickBase[Math.floor(Math.random()*6)];
+    var nick = nickBase[Math.floor(Math.random()*7)];
     return nick;
 }
 
@@ -39,11 +39,14 @@ module.exports = function(app, server){
             }
         });
         socket.on('disconnect', function(socket){
-            var i = socket.i;
-            allClients.splice(i, 1);
+            io.sockets.emit('AYST');
+            allClients = [];
+        });
+        socket.on('AYSTResponse', function(res){
+            allClients.push(res);
             host = allClients[0];
-            io.sockets.emit('entry', allClients, host);
-        });   
+            io.sockets.emit('entry', allClients, host)
+        });
         socket.on('start', function(){
             io.sockets.emit('start');
         })  
@@ -55,6 +58,9 @@ module.exports = function(app, server){
         });
         socket.on('Promote', function(data){
             io.sockets.emit('entry', allClients, allClients[data])
-        })
+        });
+        socket.on('Kick', function(data){
+            io.sockets.emit('Kicked', allClients[data]);
+        });
     });
 }

@@ -24,7 +24,7 @@ socket.on('entry', function(data, host){
             }
             else
             {
-                connected.innerHTML += '<p class="client"><strong>' + data[i] + '</strong><button onclick="kick(' + i +')">Kick</button><button onclick="promote(' + i + ')">Promote</button></p>';
+                connected.innerHTML += '<p class="client"><strong>' + data[i] + '</strong><button onclick=wypierdol('+ i +')>Kick</button><button onclick="promote(' + i + ')">Promote</button></p>';
             }
         }
         else
@@ -76,14 +76,22 @@ function enterChatSend(e)
     }
 }
 
-function kick(i)
+function wypierdol(i)
 {
-    //TODO
+    socket.emit('Kick', i);
 }
+
+socket.on('Kicked', function(data){
+    if(nick == data)
+    {
+        alert("Zostałeś wyrzucony z pokoju");
+        window.location.href = "http://www.google.com";
+    }
+});
 
 function promote(i)
 {
-    socket.emit('Promote', i)
+    socket.emit('Promote', i);
 }
 
 function sendOptions()
@@ -135,6 +143,10 @@ function chatSend(){
         document.getElementById('message').value = "";
     }
 }
+
+socket.on('AYST', function(){
+    socket.emit('AYSTResponse', nick);
+})
 
 socket.on('chat', function(data){
     if(data.sender == nick)
