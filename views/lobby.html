@@ -26,7 +26,7 @@
             <div id="options">
                     <h2>Opcje</h2>
                     <label>Liczba graczy</label>
-                    <select id="maxPlayers">
+                    <select id="maxPlayers" onchange="changeMaxCount()">
                         <option value="3">3</option>
                         <option value="4">4</option>
                         <option value="5">5</option>
@@ -37,46 +37,46 @@
                         <option value="10">10</option>
                     </select>
                     <br>
-                    <label>Karty w grze: </label>
+                    <label>Karty w grze: </label><label id="cardsNeeded"></label>
 
                     <p>
-                        Mimik<input type="checkbox" value="mimic" class="card"/> 
-                        Doppler<input type="checkbox" value="doppler" class="card"/> 
-                        Strażnik<input type="checkbox" value="sentinel" class="card"/>
+                        Mimik<input type="checkbox" onclick="changeCount(this.checked)" value="mimic" class="card"/> 
+                        Doppler<input type="checkbox" onclick="changeCount(this.checked)" value="doppler" class="card"/> 
+                        Strażnik<input type="checkbox" onclick="changeCount(this.checked)" value="sentinel" class="card"/>
                     </p>
                     <p>
-                        Wilkołak<input type="checkbox" value="werewolf" class="card monster"/> 
-                        Golem<input type="checkbox" value="golem" class="card monster"/> 
-                        Lewiatan<input type="checkbox" value="leviathan" class="card monster"/>
+                        Wilkołak<input type="checkbox" onclick="changeCount(this.checked)" value="werewolf" class="card monster"/> 
+                        Golem<input type="checkbox" onclick="changeCount(this.checked)" value="golem" class="card monster"/> 
+                        Lewiatan<input type="checkbox" onclick="changeCount(this.checked)" value="leviathan" class="card monster"/>
                     </p>
                     <p>
-                        Wampir<input type="checkbox" value="vampire" class="card monster"/> 
-                        Koszmar<input type="checkbox" value="nightmare" class="card monster"/> 
-                        Sługus<input type="checkbox" value="minion" class="card"/>
+                        Wampir<input type="checkbox" onclick="changeCount(this.checked)" value="vampire" class="card monster"/> 
+                        Koszmar<input type="checkbox" onclick="changeCount(this.checked)" value="nightmare" class="card monster"/> 
+                        Sługus<input type="checkbox" onclick="changeCount(this.checked)" value="minion" class="card"/>
                     </p>
                     <p>
-                        Wyrocznia<input type="checkbox" value="oracle" class="card"/> 
-                        Okultysta<input type="checkbox" value="ocultist" class="card"/> 
-                        Złodziej<input type="checkbox" value="thief" class="card"/>
+                        Wyrocznia<input type="checkbox" onclick="changeCount(this.checked)" value="oracle" class="card"/> 
+                        Okultysta<input type="checkbox" onclick="changeCount(this.checked)" value="ocultist" class="card"/> 
+                        Złodziej<input type="checkbox" onclick="changeCount(this.checked)" value="thief" class="card"/>
                     </p>
                     <p>
-                        Wiedźma<input type="checkbox" value="witch" class="card"/> 
-                        Łobuz<input type="checkbox" value="troublemaker" class="card"/> 
-                        Klaun<input type="checkbox" value="clown" class="card"/> 
+                        Wiedźma<input type="checkbox" onclick="changeCount(this.checked)" value="witch" class="card"/> 
+                        Łobuz<input type="checkbox" onclick="changeCount(this.checked)" value="troublemaker" class="card"/> 
+                        Klaun<input type="checkbox" onclick="changeCount(this.checked)" value="clown" class="card"/> 
                     </p>
                     <p>
-                        Mistyk<input type="checkbox" value="mistic" class="card"/> 
-                        Pijak<input type="checkbox" value="drunk" class="card"/> 
-                        Lunatyk<input type="checkbox" value="lunatic" class="card"/>
+                        Mistyk<input type="checkbox" onclick="changeCount(this.checked)" value="mistic" class="card"/> 
+                        Pijak<input type="checkbox" onclick="changeCount(this.checked)" value="drunk" class="card"/> 
+                        Lunatyk<input type="checkbox" onclick="changeCount(this.checked)" value="lunatic" class="card"/>
                     </p>
                     <p>
-                        Sędzia<input type="checkbox" value="judge" class="card"/>
-                        Grabarz<input type="checkbox" value="undertaker" class="card"/> 
-                        Łowca<input type="checkbox" value="hunter" class="card"/>
+                        Sędzia<input type="checkbox" onclick="changeCount(this.checked)" value="judge" class="card"/>
+                        Grabarz<input type="checkbox" onclick="changeCount(this.checked)" value="undertaker" class="card"/> 
+                        Łowca<input type="checkbox" onclick="changeCount(this.checked)" value="hunter" class="card"/>
                     </p>
                     <p>
-                        Przeklęty<input type="checkbox" value="cursed" class="card"/>
-                        Staruch<input type="checkbox" value="oldman" class="card"/>
+                        Przeklęty<input type="checkbox" onclick="changeCount(this.checked)" value="cursed" class="card"/>
+                        Staruch<input type="checkbox" onclick="changeCount(this.checked)" value="oldman" class="card"/>
                     </p>
                     <button onclick="sendOptions()">Zapisz</button>
             </div>        

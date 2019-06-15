@@ -1,6 +1,6 @@
 var socket = require('socket.io');
 var allClients = [];
-var gameRules = { lobbyLimit: 5, cards: null };
+var gameRules = { lobbyLimit: 5, cards: cards = [] };
 var host;
 
 function randomNick() {
@@ -19,7 +19,7 @@ module.exports = function (app, server) {
             if (allClients[0] == null) {
                 host = "";
             }
-            socket.emit('entry', allClients, host);
+            socket.emit('entry', allClients, host, gameRules);
             socket.emit('getNickname', "Podaj nick", randomNick());
             socket.on('resNickname', function (data) {
                 var nickTaken = false;
@@ -34,7 +34,7 @@ module.exports = function (app, server) {
                 else {
                     allClients.push(data);
                     host = allClients[0];
-                    io.sockets.emit('entry', allClients, host);
+                    io.sockets.emit('entry', allClients, host, gameRules);
                 }
             });
             socket.on('disconnect', function (socket) {
@@ -44,7 +44,7 @@ module.exports = function (app, server) {
             socket.on('AYSTResponse', function (res) {
                 allClients.push(res);
                 host = allClients[0];
-                io.sockets.emit('entry', allClients, host)
+                io.sockets.emit('entry', allClients, host, gameRules)
             });
             socket.on('start', function () {
                 io.sockets.emit('start');
@@ -54,12 +54,13 @@ module.exports = function (app, server) {
             });
             socket.on('Options', function (data) {
                 gameRules = data;
+                io.sockets.emit('entry', allClients, host, gameRules)
             });
             socket.on('Promote', function (data) {
-                io.sockets.emit('entry', allClients, allClients[data])
+                io.sockets.emit('entry', allClients, allClients[data], gameRules)
             });
             socket.on('Kick', function (data) {
-                io.sockets.emit('Kicked', allClients[data]);
+                io.sockets.emit('Kicked', allClients[data], gameRules);
             });
         }
     });
